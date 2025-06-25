@@ -198,15 +198,10 @@ section a:hover {
  
 /* Rodapé */
 .footer {
-  width: 100%;                /* Garante que ocupe toda a largura */
-  text-align: center;
-  padding: 1rem;
-  background: var(--cor-texto);
-  color: white;
-  position: relative;         /* Evita sobreposição com conteúdo */
-  bottom: 0;
-  left: 0;
-  clear: both;                /* Garante que fique abaixo de elementos flutuantes */
+    text-align: center;
+    padding: 1rem;
+    background: #2c3e50;
+    color: white;
 }
 
 
