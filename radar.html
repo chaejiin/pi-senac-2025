@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radar de Pets</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="./css/radar-de-pets/radar.css" />
+  <script defer src="./js/radar-de-pets/radar.js"></script>
+  
+</head>
+
+<body>
+
+  <!-- Cabeçalho -->
+  <header class="cabecalho">
+    <a href="#" class="logo">
+      <img src="./assets/imagens/radar-de-pets/logo.png" alt="LogoRastroCerto">
+    </a>
+
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="./index.html">Home</a></li>
+        <li><a class="header__link--active" href="#radar">Radar de Pets</a></li>
+        <li><a href="#ongs">ONGs/Protetores</a></li>
+        <li><a href="#final-feliz">Final Feliz</a></li>
+        <li><a href="#minha-area">Minha Área</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Achados -->
+    <section class="section section--encontrados" id="radar">
+      <h2 class="section__title"> <img src="./assets/imagens/radar-de-pets/patinhas.svg" alt="Icone Patinhas"> Procure aqui seu pet (Achados / Lar Temporário)  <img src="./assets/imagens/radar-de-pets/patinhas.svg" alt="Icone Patinhas">  </h2>
+      <p class="section__text">
+        Tecnologia inteligente para localizar pets perdidos. Utiliza microchips, inteligência artificial e dados da
+        comunidade para cruzar informações em tempo real e encontrar animais desaparecidos com mais precisão.
+      </p>
+      <div class="pets__grid" id="encontrados"></div>
+      <div class="vermais"><a href="#radar">Ver mais ...</a></div>
+    </section>
+
+    <!-- Perdidos -->
+    <section class="section section--perdidos">
+      <h2 class="section__title"> <img src="./assets/imagens/radar-de-pets/patinhas.svg" alt="Icone Patinhas">   Anuncie aqui seu pet (Perdidos) <img src="./assets/imagens/radar-de-pets/patinhas.svg" alt="Icone Patinhas"> </h2>
+      <p class="section__text">
+        Perdeu seu pet? Crie um anúncio em minutos e ative alertas para pessoas próximas. Nossa IA cruza dados com
+        relatos da região e aumenta suas chances de reencontro.
+      </p>
+      <div class="pets__grid" id="perdidos"></div>
+      <div class="vermais"><a href="#radar">Ver mais ...</a></div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <p>© 2025 RastroCerto. Todos os direitos reservados. <a href="https://github.com/monicamix" target="_blank"
+        class="footer-link">GitHub da Monica</a></p>
+    <div id="shimeji-container">
+      <img src="./assets/imagens/radar-de-pets/gato.gif" alt="Shimeji" id="shimeji">
+      <audio id="som-miado" src="./assets/audio/radar-de-pets/gato-raivoso.mp3" preload="auto"></audio>
+    </div>
+  </footer>
+
+</body>
+
+</html>

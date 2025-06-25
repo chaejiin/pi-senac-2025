@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RastroCerto - Início</title>
+    <link rel="stylesheet" href="./css/home/style.css" />
+    <script defer src="./js/home/script.js"></script>
+</head>
+
+<body>
+
+    <div class="background"></div>
+
+    <!-- Cabeçalho com logo e menu -->
+    <div class="content">
+        <header class="cabecalho">
+            <a href="#" class="logo">
+                <img src="./assets/imagens/home/logo.png" alt="RastroCerto" />
+            </a>
+
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./radar.html">Radar de Pets</a></li>
+                    <li><a href="#ongs">ONGs/Protetores</a></li>
+                    <li><a href="#final-feliz">Final Feliz</a></li>
+                    <li><a href="#minha-area">Minha Área</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Banner com slider -->
+        <section class="banner">
+            <div class="slider">
+                <div class="slide"><img src="./assets/imagens/home/Animal 1.jpg" alt="Animal 1" /></div>
+                <div class="slide"><img src="./assets/imagens/home/Animal 2.jpg" alt="Animal 2" /></div>
+                <div class="slide"><img src="./assets/imagens/home/Animal 3.jpg" alt="Animal 3" /></div>
+            </div>
+            <a href="#final-feliz" class="banner-overlay">Ver mais notícias</a>
+        </section>
+
+        <!-- Canvas + Título -->
+        <main id="draw-main">            
+            <section class="main-title">
+                <h2>A Jornada Começa com o Seu Traço</h2>
+            </section>
+
+            <!-- Cards e área de desenho -->
+            <section class="cards">
+                <section class="draw-container">
+                    <canvas id="draw-canvas"></canvas>
+
+                    <!-- Paleta de cores funcional -->
+                    <div class="controls">
+                        <div id="color-buttons">
+                            <button class="color-btn active" data-color="#007bff" style="background:#007bff"
+                                aria-label="Azul"></button>
+                            <button class="color-btn" data-color="#e74c3c" style="background:#e74c3c"
+                                aria-label="Vermelho"></button>
+                            <button class="color-btn" data-color="#2ecc71" style="background:#2ecc71"
+                                aria-label="Verde"></button>
+                            <button class="color-btn" data-color="#f39c12" style="background:#f39c12"
+                                aria-label="Laranja"></button>
+                            <button id="erase-btn" aria-label="Borracha">🧽</button>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- Cards -->
+
+                <div class="cards__content">
+                    <!-- Cards principais centralizados -->
+                    <div class="cards__group">
+                        <article class="cards__item" tabindex="0" data-content="default">
+                            <h2 class="cards__title">Conheça o Projeto (1/3)</h2>
+                            <p class="cards__text">Rastro Certo é uma plataforma inteligente criada para facilitar o
+                                reencontro entre pessoas e seus animais perdidos.</p>
+                        </article>
+
+                        <article class="cards__item" tabindex="0" data-content="default">
+                            <h2 class="cards__title">Conheça o Projeto (2/3)</h2>
+                            <p class="cards__text">Usamos tecnologia, empatia e acessibilidade para ampliar as chances
+                                de
+                                reencontro de forma ágil e eficaz.</p>
+                        </article>
+
+                        <article class="cards__item" tabindex="0" data-content="default">
+                            <h2 class="cards__title">Conheça o Projeto (3/3)</h2>
+                            <p class="cards__text">A IA analisa imagens, compara visualmente e cruza dados como
+                                aparência e
+                                região.</p>
+                        </article>
+                    </div>
+
+                    <!-- Botão posicionado abaixo dos cards -->
+                    <div class="cards__actions">
+                        <button class="cards__button">Saiba Mais</button>
+                    </div>
+
+                </div>
+    </div>
+
+    </section>
+    </main>
+
+
+    <!-- Rodapé completo -->
+    <footer class="footer">
+        <div class="mapa-site">
+            <h4>Mapa do Site</h4>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#radar">Radar de Pets</a></li>
+                <li><a href="#ongs">ONGs/Protetores</a></li>
+                <li><a href="#final-feliz">Final Feliz</a></li>
+                <li><a href="#minha-area">Minha Área</a></li>
+            </ul>
+        </div>
+        <div class="direitos">
+            <p>© 2025 RastroCerto. Todos os direitos reservados. UI/UX por <a href="https://codepen.io/chaejiin"
+                    target="_blank" class="footer-link">Chaejiin</a></p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
