@@ -32,21 +32,21 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const button = document.querySelector('.cards__button');
-    const articles = document.querySelectorAll('[data-content="default"]');    
-    const techCard = document.querySelector('.cards__item[data-content="default"]'); 
-    
+    const articles = document.querySelectorAll('[data-content="default"]');
+    const techCard = document.querySelector('.cards__item[data-content="default"]');
+
     let currentContent = 'default';
 
     function updateContent() {
         const newContent = currentContent === 'default' ? 'alternative' : 'default';
-        
+
         articles.forEach((article, index) => {
             const content = contentSets[newContent][index];
             if (content) {
                 article.querySelector('.cards__title').textContent = content.title;
                 article.querySelector('.cards__text').textContent = content.text;
             }
-        });        
+        });
 
         button.textContent = currentContent === 'default' ? 'Voltar' : 'Saiba Mais';
         currentContent = newContent;
@@ -60,8 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Controle de animação ao focar
     document.querySelectorAll('.cards__item').forEach(item => {
-        item.addEventListener('focus', function() {            
-            this.style.transform = this.style.transform; 
+        item.addEventListener('focus', function () {
+            this.style.transform = this.style.transform;
         });
     });
 
@@ -104,17 +104,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll("#color-buttons button").forEach(btn => {
         btn.addEventListener("click", () => {
             if (btn.dataset.color) {
-                currentColor = btn.dataset.color;                
+                currentColor = btn.dataset.color;
                 document.querySelectorAll("#color-buttons button").forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
             } else {
                 // Lógica da borracha: limpar o canvas
-                ctx.clearRect(0, 0, canvas.width, canvas.height);                
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
                 document.querySelectorAll("#color-buttons button").forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
             }
         });
-    });
+    });    
 
     // Removi as chamadas a setupCardDrag e as variáveis leftCards, rightCards, discardedCards, resetBtn    
 
