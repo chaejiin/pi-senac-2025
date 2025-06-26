@@ -1,8 +1,7 @@
-// ======= MENU HAMBÚRGUER =======
 document.addEventListener("DOMContentLoaded", () => {
-  // --- MENU ---
+  // --- MENU HAMBURGUER ---
   const hamburger = document.getElementById("hamburger");
-  const navMenu  = document.querySelector(".nav-menu");
+  const navMenu = document.querySelector(".nav-menu");
 
   hamburger.addEventListener("click", () => {
     navMenu.classList.toggle("active");
@@ -14,19 +13,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- DADOS DE PETS ---
   const pets = [
-    { nome: "ALVIN - ES",   img: "assets/imagens/radar-de-pets/pet1.png", status: "achado" },
-    { nome: "ALEMÃO - RS",  img: "assets/imagens/radar-de-pets/pet2.png", status: "achado" },
+    { nome: "ALVIN - ES", img: "assets/imagens/radar-de-pets/pet1.png", status: "achado" },
+    { nome: "ALEMÃO - RS", img: "assets/imagens/radar-de-pets/pet2.png", status: "achado" },
     { nome: "ALFREDO - SP", img: "assets/imagens/radar-de-pets/pet3.png", status: "achado" },
     { nome: "AUGUSTO - RS", img: "assets/imagens/radar-de-pets/pet4.png", status: "achado" },
-    { nome: "ALEMÃO - RS",  img: "assets/imagens/radar-de-pets/pet5.png", status: "achado" },
-    { nome: "ALVIM - RS",   img: "assets/imagens/radar-de-pets/pet6.png", status: "achado" },
+    { nome: "ALEMÃO - RS", img: "assets/imagens/radar-de-pets/pet5.png", status: "achado" },
+    { nome: "ALVIM - RS", img: "assets/imagens/radar-de-pets/pet6.png", status: "achado" },
 
-    { nome: "ALEX - MA",    img: "assets/imagens/radar-de-pets/pet7.png", status: "perdido" },
-    { nome: "ALANA - RS",   img: "assets/imagens/radar-de-pets/pet8.png", status: "perdido" },
+    { nome: "ALEX - MA", img: "assets/imagens/radar-de-pets/pet7.png", status: "perdido" },
+    { nome: "ALANA - RS", img: "assets/imagens/radar-de-pets/pet8.png", status: "perdido" },
     { nome: "ALFREDO - BA", img: "assets/imagens/radar-de-pets/pet3.png", status: "perdido" },
     { nome: "AUGUSTO - RS", img: "assets/imagens/radar-de-pets/pet4.png", status: "perdido" },
-    { nome: "ALEMÃO - RS",  img: "assets/imagens/radar-de-pets/pet5.png", status: "perdido" },
-    { nome: "ALVIM - RS",   img: "assets/imagens/radar-de-pets/pet6.png", status: "perdido" }
+    { nome: "ALEMÃO - RS", img: "assets/imagens/radar-de-pets/pet5.png", status: "perdido" },
+    { nome: "ALVIM - RS", img: "assets/imagens/radar-de-pets/pet6.png", status: "perdido" }
   ];
 
   // --- FUNÇÕES DE CARDS ---
@@ -60,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- RENDERIZAÇÃO ---
-  carregarPets("achado",  "encontrados");
+  carregarPets("achado", "encontrados");
   carregarPets("perdido", "perdidos");
   animarImagens();
 
@@ -73,19 +72,34 @@ document.addEventListener("DOMContentLoaded", () => {
   let indoDireita = true;
   let girando = false;
 
+  // Função para liberar áudio após interação do usuário
+  function desbloquearSom() {
+    somGatoRaivoso.play().then(() => {
+      somGatoRaivoso.pause();
+      somGatoRaivoso.currentTime = 0;
+    }).catch(() => {
+      // Caso o áudio ainda esteja bloqueado, apenas ignore
+    });
+    // Remove os listeners para não chamar várias vezes
+    window.removeEventListener('click', desbloquearSom);
+    window.removeEventListener('touchstart', desbloquearSom);
+  }
+  window.addEventListener('click', desbloquearSom);
+  window.addEventListener('touchstart', desbloquearSom);
+
   function girarGato(callback) {
     if (girando) return;
     girando = true;
 
     const duracao = 1000;
-    const inicio  = performance.now();
+    const inicio = performance.now();
 
     somGatoRaivoso.currentTime = 0;
     somGatoRaivoso.play();
 
     function animar(agora) {
       const progresso = (agora - inicio) / duracao;
-      const rotacao   = -10000 * progresso;
+      const rotacao = -10000 * progresso;
 
       gato.style.transform = `scaleX(${indoDireita ? 1 : -1}) rotate(${rotacao}deg)`;
 

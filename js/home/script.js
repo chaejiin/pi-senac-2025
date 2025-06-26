@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Código existente para os cards
+    // Conteúdo alternativo dos cards (já existente)
     const contentSets = {
         default: [
             {
@@ -33,8 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const button = document.querySelector('.cards__button');
     const articles = document.querySelectorAll('[data-content="default"]');
-    const techCard = document.querySelector('.cards__item[data-content="default"]');
-
     let currentContent = 'default';
 
     function updateContent() {
@@ -58,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateContent();
     });
 
-    // Controle de animação ao focar
+    // Controle de animação ao focar (se necessário)
     document.querySelectorAll('.cards__item').forEach(item => {
         item.addEventListener('focus', function () {
             this.style.transform = this.style.transform;
@@ -79,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
+    // Eventos mouse
     canvas.addEventListener("mousedown", (e) => {
         drawing = true;
         [lastX, lastY] = [e.offsetX, e.offsetY];
@@ -98,6 +97,42 @@ document.addEventListener('DOMContentLoaded', () => {
         [lastX, lastY] = [e.offsetX, e.offsetY];
     });
 
+    // Eventos toque para mobile
+    canvas.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        const rect = canvas.getBoundingClientRect();
+        lastX = touch.clientX - rect.left;
+        lastY = touch.clientY - rect.top;
+        drawing = true;
+    }, { passive: false });
+
+    canvas.addEventListener("touchmove", (e) => {
+        if (!drawing) return;
+        e.preventDefault();
+        const touch = e.touches[0];
+        const rect = canvas.getBoundingClientRect();
+        const currentX = touch.clientX - rect.left;
+        const currentY = touch.clientY - rect.top;
+
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(currentX, currentY);
+        ctx.strokeStyle = currentColor;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        lastX = currentX;
+        lastY = currentY;
+    }, { passive: false });
+
+    canvas.addEventListener("touchend", () => {
+        drawing = false;
+    });
+    canvas.addEventListener("touchcancel", () => {
+        drawing = false;
+    });
+
     // ==== COLOR PALETTE ====
     let currentColor = "#000";
 
@@ -108,15 +143,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelectorAll("#color-buttons button").forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
             } else {
-                // Lógica da borracha: limpar o canvas
+                // Borracha: limpar o canvas
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 document.querySelectorAll("#color-buttons button").forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
             }
         });
-    });    
-
-    // Removi as chamadas a setupCardDrag e as variáveis leftCards, rightCards, discardedCards, resetBtn    
+    });
 
     // ==== MENU HAMBÚRGUER ====
     const hamburger = document.querySelector(".hamburger");
