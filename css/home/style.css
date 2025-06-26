@@ -1,492 +1,488 @@
+/* Reset básico */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
- 
-body {
-      margin: 0;
-      font-family: sans-serif;
-      line-height: 1.6;
-      color: #333;
-      position: relative;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
- 
-     .background {
-      background-image: url('../../assets/imagens/home/background.jpg');
-      background-size: cover;
-      background-position: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.3;
-      z-index: -1;
-    }
- 
-    .content {
-      position: relative;
-      padding: 2rem;
-      z-index: 1;
-    }
- 
-/* Cabeçalho */
-.cabecalho {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
-    background: #f9f9f9;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 100;
-}
- 
-.logo img {
-    max-width: 180px;
-    height: auto;
-}
- 
-/* Menu de navegação */
-.nav-menu ul {
-    display: flex;
-    list-style: none;
-    gap: 1rem;
-}
- 
-.nav-menu a {
-    text-decoration: none;
-    color: #2c3e50;
-    padding: 0.8rem 1.2rem;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    display: inline-block;
-}
- 
-.nav-menu a:hover {
-    background: #38a9f5;
-    color: white;
-    transform: scale(1.05);
-}
- 
-/* Botão hambúrguer */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 28px;
-    height: 21px;
-    cursor: pointer;
-}
- 
-.hamburger span {
-    background: #2c3e50;
-    height: 3px;
-    border-radius: 3px;
-    transition: all 0.3s ease;
-}
- 
-/* Menu responsivo ativo */
-.nav-menu.active {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #f8f9fa;
-    width: 100%;
-    padding: 1rem 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
- 
-.nav-menu.active ul {
-    flex-direction: column;
-    align-items: center;
-}
- 
-/* Responsivo */
-@media (max-width: 768px) {
-    .nav-menu {
-        display: none;
-    }
-    .hamburger {
-        display: flex;
-    }
-    .nav-menu ul {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-}
- 
-/* Título principal */
-.main-title {
-    text-align: center;
-    margin: 3rem 0 2rem;
-    font-family: 'Arial', sans-serif;
-    color: #2c3e50;
-}
- 
-.main-title h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-}
- 
-/* Banner */
-.banner {
-    position: relative;
-    overflow: hidden;
-    height: 70vh;
-}
- 
-.slider {
-    display: flex;
-    animation: slide 15s infinite;
-}
- 
-.slide {
-    min-width: 100%;
-}
- 
-.slide img {
-    width: 100%;
-    height: 70vh;
-    object-fit: cover;
-}
- 
-.banner-overlay {
-    position: absolute;
-    bottom: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(56, 169, 245, 0.9);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 30px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-size: 1.1rem; 
-    font-family: 'Open Sans', sans-serif; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2)
-}
- 
-.banner-overlay:hover {
-    background: #219a52;
-     transform: translateX(-50%) translateY(-2px) scale(1.05);
-}
- 
-/* Animação do slider */
-@keyframes slide {
-    0% { transform: translateX(0%); }
-    33.33% { transform: translateX(-100%); }
-    66.66% { transform: translateX(-200%); }
-    100% { transform: translateX(0%); }
-}
- 
-/* --- */
-/* Área de Desenho e Cards - Correções aqui */
-/* --- */
- 
-/* Contêiner principal para o canvas e cards */
-/* Alterado para flexbox em coluna para organizar o canvas e os cards um abaixo do outro */
-main#draw-main {
-    display: flex;
-    flex-direction: column; /* Organiza os itens verticalmente */
-    align-items: center; /* Centraliza os itens horizontalmente */
-    padding: 2rem 1rem; /* Ajusta o padding */
-    background: #f9f9f9;
-    /* Altura removida para permitir que o conteúdo determine o tamanho */
-    /* width: 100%; ou max-width para controle do tamanho total */
-}
- 
-/* Área de desenho */
-.draw-container {
-    position: relative;
-    width: 90%; /* Ajustado para ser mais harmonioso, 90% da largura do main */
-    max-width: 800px; /* Adicionado um tamanho máximo para não ficar excessivamente grande em telas largas */
-    height: 400px; /* Altura fixa para o canvas */
-    border-radius: 16px;
-    box-shadow: inset 0 0 40px #a4d4ff88;
-    overflow: hidden;
-    background: url('../../assets/imagens/home/dog_walk.gif') center center / cover no-repeat;
-    z-index: 0; /* z-index padrão */
-    margin-bottom: 2rem; /* Espaço entre o canvas e os cards */
-}
- 
-/* Canvas ocupa todo espaço do seu contêiner pai */
-#draw-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    cursor: crosshair;
-    background: transparent;
-    z-index: 10;
-}
- 
-/* Controles de cor e borracha */
-.controls {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255,255,255,0.85);
-    border-radius: 10px;
-    padding: 8px 12px;
-    display: flex;
-    gap: 12px;
-    z-index: 20; /* Garante que os controles fiquem acima do canvas */
-    user-select: none;
-}
- 
-/* Correção para a paleta de cores: o margin-top estava empurrando os botões */
-#color-buttons {
-    margin-top: 0; /* Removido margin-top que estava dentro dos controles */
-    display: flex; /* Garante que os botões se alinhem horizontalmente */
-    align-items: center;
-    gap: 6px; /* Espaçamento entre os botões */
-}
- 
-#color-buttons button {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: none;
-    margin: 0; /* Remove margem desnecessária */
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Adiciona sombra para destaque */
-    transition: transform 0.2s ease;
-}
- 
-#color-buttons button:hover {
-    transform: scale(1.1);
-}
- 
-#color-buttons button:last-child {
-    width: auto;
-    border-radius: 6px;
-    padding: 6px 12px;
-    background: white;
-    border: 1px solid #ccc;
-    font-size: 1.2rem;
-}
- 
-.reset-container {
-    text-align: center;
-    margin: 20px 0;
-}
- 
-.reset-btn {
-    background: #38a9f5;
-    color: #f9f9f9;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
- 
-.reset-btn:hover {
-    background: #2980b9;
-}
- 
-/* --- */
-/* Área Cards - Correções e Otimizações aqui */
-/* --- */
- 
-/* Reset das dimensões problemáticas para .cards */
-.cards {
-    /* Removido height: 100vh; e width: 100vw; */
-    overflow: hidden; /* Mantém o overflow para os efeitos 3D */
-    background-color: transparent; /* Alterado para transparente */
-    perspective: 32em;
-    font-family: 'Indie Flower', cursive;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 5rem; /* Adiciona padding na parte inferior para o botão e espaço */
-    max-width: 1000px; /* Limita a largura máxima dos cards para não ficarem muito grandes */
-    width: 100%; /* Ocupa a largura disponível no main */
-    position: relative; /* Necessário para z-index e posicionamento interno */
-}
- 
-.cards__content {
-    position: relative;
-    width: 100%; /* Usar 100% da largura do .cards */
-    /* Removido var(--content-width) */
-    height: auto; /* Permite que a altura seja determinada pelo conteúdo */
-    margin: 0 auto;
-    display: flex; /* Usar flexbox para o grupo de cards */
-    justify-content: center;
-    flex-wrap: wrap; /* Permite que os cards quebrem linha */
-    gap: 2rem;
-    padding-top: 5vh; /* Mantido o padding para espaçamento superior */
-}
- 
-.cards__group {
-    /* Removido posicionamento absoluto e transform */
-    /* Já está usando flexbox em .cards__content */
-    display: contents; /* Isso faz com que os itens do grupo se comportem como filhos diretos do .cards__content */
-}
- 
-.cards__item {
-    width: 280px; /* Largura fixa para cada card para ter controle */
-    height: 350px; /* Altura fixa para cada card */
-    background: #f9f9f9;
-    padding: 1.5rem;
-    transform: rotateX(var(--rotation-angle, 0deg)) translateZ(calc(-1 * var(--page-top-margin, 0vh))) translateY(calc(var(--page-top-margin, 0vh) / 10));
-    transform-style: preserve-3d;
-    transition: all var(--transition-time, 0.5s) ease; /* Adicionado um easing padrão */
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    position: relative;
-    flex-shrink: 0;
-    display: flex; /* Adicionado flex para alinhar o conteúdo interno */
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
- 
-.cards__item h2 {
-    margin-bottom: 1rem;
-    color: #333;
-}
- 
-.cards__item p {
-    color: #666;
-}
- 
-.cards__item::after {
-    content: "";
-    display: block;
-    background: radial-gradient(rgba(0,0,0,.1) 25%, transparent, transparent);
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 50%;
-    transform: translateZ(-10vh) translateY(-5vh) rotateX(0);
-    transition: all var(--transition-time, 0.5s);
-    z-index: -1;
-}
- 
-.cards__actions {
-    /* Posicionamento relativo ao .cards */
-    position: relative; /* Alterado para relative */
-    margin-top: 3rem; /* Margem para separar do grupo de cards */
-    text-align: center;
-    width: 100%; /* Para centralizar o botão */
-    z-index: 100;
-}
- 
-.cards__button {
-    padding: 1rem 2rem;
-    background: #38a9f5;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1.1rem;
-    font-family: 'Open Sans', sans-serif;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
- 
-.cards__button:hover {
-    background: #219a52;
-    transform: translateY(-2px) scale(1.05);
-}
- 
-/* Efeitos de Hover/Focus */
-/* Ajustados os valores para serem menos drásticos com as novas dimensões */
-.cards__item:hover {
-    transform: rotateX(5deg) translateZ(calc(-1 * var(--page-top-margin, 0vh) + 5vh)) translateY(calc(var(--page-top-margin, 0vh) * 0.1)) scale(1.05);
-    z-index: 10;
-}
- 
-.cards__item:focus {
-    transform: rotateX(0deg) translateZ(calc(-1 * var(--page-top-margin, 0vh) + 10vh)) translateY(calc(var(--page-top-margin, 0vh) * 0.2)) scale(1.1);
-    z-index: 20;
-}
- 
-/* Classe para esconder os cards (a ser controlada por JS) */
-.cards--hidden {
-    display: none;
-}
- 
-/* Responsividade dos cards */
-@media (max-width: 960px) {
-    .cards__content {
-        gap: 1.5rem;
-        padding-top: 3vh;
-    }
-    .cards__item {
-        width: 45%; /* Ajusta a largura para duas colunas */
-        height: 300px;
-    }
-}
- 
-@media (max-width: 600px) {
-    .cards__item {
-        width: 90%; /* Uma coluna em telas menores */
-        height: 320px;
-        margin: 0.5rem 0; /* Espaçamento vertical */
-    }
-    .cards__actions {
-        bottom: 2vh;
-    }
-}
- 
-/* Footer */
-.footer {
-    position: relative;
-    background: #2c3e50;
-    color: white;
-    padding: 2rem 5%;
-    overflow: hidden;
-    min-height: 200px;
-}
- 
-.mapa-site ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
-}
- 
-.mapa-site a {
-    color: #ecf0f1;
-    text-decoration: none;
-}
- 
-.mapa-site a:hover {
-    color: #3498db;
-}
- 
-.direitos {
-    text-align: center;
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid #34495e;
-}
- 
-.footer-link {
-    color: #F28B30;
-    text-decoration: none;
-    transition: color 0.3s;
-}
- 
-.footer-link:hover {
-    color: #ff1493;
-    text-decoration: underline;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
 }
 
+body {
+  margin: 0;
+  font-family: sans-serif;
+  line-height: 1.6;
+  color: #333;
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Fundo */
+.background {
+  background-image: url('../../assets/imagens/home/background.jpg');
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.content {
+  position: relative;
+  padding: 2rem;
+  z-index: 1;
+}
+
+/* Cabeçalho */
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 100;
+}
+
+.logo img {
+  max-width: 180px;
+  height: auto;
+}
+
+/* Menu de navegação */
+.nav-menu ul {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #2c3e50;
+  padding: 0.8rem 1.2rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: inline-block;
+}
+
+.nav-menu a:hover {
+  background: #38a9f5;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Botão hambúrguer */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 21px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  background: #2c3e50;
+  height: 3px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Menu responsivo ativo */
+.nav-menu.active {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #f8f9fa;
+  width: 100%;
+  padding: 1rem 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-menu.active ul {
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Responsivo menu */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+  .nav-menu ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Título principal */
+.main-title {
+  text-align: center;
+  margin: 3rem 0 2rem;
+  font-family: 'Arial', sans-serif;
+  color: #2c3e50;
+}
+
+.main-title h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+/* Banner */
+.banner {
+  position: relative;
+  overflow: hidden;
+  height: 70vh;
+}
+
+.slider {
+  display: flex;
+  animation: slide 15s infinite;
+}
+
+.slide {
+  min-width: 100%;
+}
+
+.slide img {
+  width: 100%;
+  height: 70vh;
+  object-fit: cover;
+}
+
+.banner-overlay {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(56, 169, 245, 0.9);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1.1rem; 
+  font-family: 'Open Sans', sans-serif; 
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.banner-overlay:hover {
+  background: #219a52;
+  transform: translateX(-50%) translateY(-2px) scale(1.05);
+}
+
+/* Animação do slider */
+@keyframes slide {
+  0% { transform: translateX(0%); }
+  33.33% { transform: translateX(-100%); }
+  66.66% { transform: translateX(-200%); }
+  100% { transform: translateX(0%); }
+}
+
+/* --- Área de Desenho e Cards --- */
+
+main#draw-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  background: #f9f9f9;
+}
+
+.draw-container {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  height: 400px;
+  border-radius: 16px;
+  box-shadow: inset 0 0 40px #a4d4ff88;
+  overflow: hidden;
+  background: url('../../assets/imagens/home/dog_walk.gif') center center / cover no-repeat;
+  z-index: 0;
+  margin-bottom: 2rem;
+}
+
+#draw-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  background: transparent;
+  z-index: 10;
+}
+
+.controls {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.85);
+  border-radius: 10px;
+  padding: 8px 12px;
+  display: flex;
+  gap: 12px;
+  z-index: 20;
+  user-select: none;
+}
+
+#color-buttons {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#color-buttons button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  margin: 0;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+#color-buttons button:hover {
+  transform: scale(1.1);
+}
+
+#color-buttons button:last-child {
+  width: auto;
+  border-radius: 6px;
+  padding: 6px 12px;
+  background: white;
+  border: 1px solid #ccc;
+  font-size: 1.2rem;
+}
+
+.reset-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.reset-btn {
+  background: #38a9f5;
+  color: #f9f9f9;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.reset-btn:hover {
+  background: #2980b9;
+}
+
+/* --- Área Cards --- */
+
+.cards {
+  overflow: hidden;
+  background-color: transparent;
+  perspective: 32em;
+  font-family: 'Indie Flower', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 5rem;
+  max-width: 1000px;
+  width: 100%;
+  position: relative;
+}
+
+.cards__content {
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding-top: 5vh;
+}
+
+.cards__group {
+  display: contents;
+}
+
+.cards__item {
+  width: 280px;
+  height: 350px;
+  background: #f9f9f9;
+  padding: 1.5rem;
+  transform: rotateX(var(--rotation-angle, 0deg)) translateZ(calc(-1 * var(--page-top-margin, 0vh))) translateY(calc(var(--page-top-margin, 0vh) / 10));
+  transform-style: preserve-3d;
+  transition: all var(--transition-time, 0.5s) ease;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.cards__item h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.cards__item p {
+  color: #666;
+}
+
+.cards__item::after {
+  content: "";
+  display: block;
+  background: radial-gradient(rgba(0,0,0,.1) 25%, transparent, transparent);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  transform: translateZ(-10vh) translateY(-5vh) rotateX(0);
+  transition: all var(--transition-time, 0.5s);
+  z-index: -1;
+}
+
+.cards__actions {
+  position: relative;
+  margin-top: 3rem;
+  text-align: center;
+  width: 100%;
+  z-index: 100;
+}
+
+/* Botões com tamanho e estilo consistentes */
+.cards__button {
+  padding: 1rem 2rem;
+  background: #38a9f5;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  font-family: 'Open Sans', sans-serif;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  display: inline-block;
+  min-width: 200px;
+  white-space: nowrap;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.cards__button:hover {
+  background: #219a52;
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* Hover / Focus nos cards */
+.cards__item:hover {
+  transform: rotateX(5deg) translateZ(calc(-1 * var(--page-top-margin, 0vh) + 5vh)) translateY(calc(var(--page-top-margin, 0vh) * 0.1)) scale(1.05);
+  z-index: 10;
+}
+
+.cards__item:focus {
+  transform: rotateX(0deg) translateZ(calc(-1 * var(--page-top-margin, 0vh) + 10vh)) translateY(calc(var(--page-top-margin, 0vh) * 0.2)) scale(1.1);
+  z-index: 20;
+}
+
+/* Esconder cards via JS */
+.cards--hidden {
+  display: none;
+}
+
+/* Responsividade */
+@media (max-width: 960px) {
+  .cards__content {
+    gap: 1.5rem;
+    padding-top: 3vh;
+  }
+  .cards__item {
+    width: 45%;
+    height: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cards__item {
+    width: 90%;
+    height: 320px;
+    margin: 0.5rem 0;
+  }
+  .cards__actions {
+    bottom: 2vh;
+  }
+  /* Ajusta o tamanho dos botões para mobile, largura consistente */
+  .cards__button {
+    width: 90vw;
+    max-width: 280px;
+    font-size: 1rem;
+  }
+}
+
+/* Footer */
+.footer {
+  position: relative;
+  background: #2c3e50;
+  color: white;
+  padding: 2rem 5%;
+  overflow: hidden;
+  min-height: 200px;
+}
+
+.mapa-site ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.mapa-site a {
+  color: #ecf0f1;
+  text-decoration: none;
+}
+
+.mapa-site a:hover {
+  color: #3498db;
+}
+
+.direitos {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #34495e;
+}
+
+.footer-link {
+  color: #F28B30;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-link:hover {
+  color: #ff1493;
+  text-decoration: underline;
+}
+
+/* Listas */
 ul {
   list-style: none;
   padding-left: 0;
