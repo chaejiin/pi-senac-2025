@@ -1,23 +1,10 @@
 /*=============================================================================
  * CRÉDITOS PARA A PÁGINA "FINAL FELIZ":
- *
- * A estrutura e os estilos originais para a seção "Final Feliz" foram desenvolvidos por:
- *
  * Autor Original:   Lucas Bilotte
  * GitHub:           https://github.com/Bilotte/PrjRastroCerto_Eventos
- *
- *-----------------------------------------------------------------------------
- *
- * AJUSTES E REFATORAÇÃO:
- * O código foi revisado e ajustado por Chaejiin (https://github.com/chaejiin/pi-senac-2025)
- * para melhorar a harmonia visual do design, a responsividade em
- * diferentes dispositivos e a organização geral da folha de estilo.
- *
- * Modificado por:   Chaejiin
+ * Refatoração:      Chaejiin (https://github.com/chaejiin/pi-senac-2025)
  * Última Atualização: 25 de Junho de 2025
- *
  *=============================================================================*/
- 
 
 /* ===================================================================
    CSS GERAL E RESET
@@ -32,7 +19,6 @@
 
 body {
     overflow-x: hidden;
-    /* Evita scroll horizontal indesejado */
     color: #333;
     background-color: #fff;
 }
@@ -118,13 +104,15 @@ img {
     padding: 1rem 5%;
     background: #f8f9fa;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+    position: relative;
+    z-index: 100;
 }
 
 .index-link {
-  background: #3498db; 
-  color: white !important;
-  border-radius: 5px;
-  padding: 5px 10px;
+    background: #3498db; 
+    color: white !important;
+    border-radius: 5px;
+    padding: 5px 10px;
 }
 
 .logo img {
@@ -149,14 +137,44 @@ img {
     border-radius: 4px;
 }
 
-/* O botão do menu mobile fica escondido por padrão */
-.menu-mobile {
+/* Estilo do botão hambúrguer */
+.hamburger {
     display: none;
-    /* Será exibido em telas menores na seção de Media Queries */
-    background: none;
-    border: none;
-    font-size: 1.5rem;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 21px;
     cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 5%;
+    z-index: 1100;
+}
+
+.hamburger span {
+    background: #2c3e50;
+    height: 3px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Menu responsivo ativo */
+.nav-menu.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #f8f9fa;
+    width: 100%;
+    padding: 1rem 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-menu.active ul {
+    flex-direction: column;
+    align-items: center;
 }
 
 /* ===================================================================
@@ -200,61 +218,6 @@ img {
 .section-busca .btn-buscar:hover {
     background-color: #FFA000;
 }
-
-/* Estilo do botão hambúrguer */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 28px;
-    height: 21px;
-    cursor: pointer;
-}
-
-.hamburger span {
-    background: #2c3e50;
-    height: 3px;
-    border-radius: 3px;
-    transition: all 0.3s ease;
-}
-
-
-/* Menu responsivo ativo */
-.nav-menu.active {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #f8f9fa;
-    width: 100%;
-    padding: 1rem 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.nav-menu.active ul {
-  flex-direction: column;
-  align-items: center;
-}
-
-
-/* Mobile: Esconder o menu normal e mostrar só o hambúrguer */
-@media (max-width: 768px) {
-  .nav-menu {
-    display: none;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
-  .nav-menu ul {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-}
-
 
 /* ===================================================================
    BANNER SLIDER
@@ -310,11 +273,10 @@ img {
     }
 }
 
-/* Estilo para a imagem de título da seção de depoimentos (TAMANHO AJUSTADO) */
 .section-title-image {
-    max-width: 450px; /* REDUZIDO: A largura máxima agora é menor e mais parecida com um título */
-    width: 80%;       /* AJUSTADO: Ocupa um pouco menos em telas pequenas para ficar mais proporcional */
-    margin-bottom: 40px; /* Mantém o espaço entre a imagem e os depoimentos */
+    max-width: 450px;
+    width: 80%;
+    margin-bottom: 40px;
 }
 
 /* ===================================================================
@@ -326,7 +288,7 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 80px 5%; /* ESTA LINHA */
+    padding: 80px 5%;
     background-color: #f8f9fa;
     width: 100%;
 }
@@ -338,22 +300,16 @@ img {
     margin-bottom: 60px;
 }
 
-/* O container que segura os cards */
 .opinion {
-    display: flex; /* Mantido para o Owl Carousel funcionar corretamente */
+    display: flex;
     justify-content: center;
     width: 100%;
-    
-    /* --- MUDANÇA PRINCIPAL AQUI --- */
-    /* Define uma largura máxima para a área do carrossel */
-    /* Isso impede que os itens se espacem demais em telas muito grandes */
-    max-width: 1500px; 
+    max-width: 1500px;
 }
 
 .testimonial {
     background: #fff;
-    padding: 30px;
-    padding-left: 40px;
+    padding: 30px 40px;
     margin-top: 50px;
     width: 100%;
     max-width: 480px;
@@ -474,18 +430,16 @@ img {
    =================================================================== */
 
 @media only screen and (max-width: 768px) {
-    /* --- AJUSTES GERAIS --- */
     .banner {
         height: 50vh;
     }
+
     .slide img {
         height: 50vh;
     }
 
-    /* --- AJUSTES DO MENU --- */
-    .nav-menu ul {
+    .nav-menu {
         display: none;
-        flex-direction: column;
         width: 100%;
         position: absolute;
         top: 100%;
@@ -493,38 +447,54 @@ img {
         background: #f8f9fa;
         padding: 1rem 0;
     }
-    .nav-menu.active ul {
+
+    .nav-menu.active {
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1000;
     }
+
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
     .nav-menu a {
         padding: 1rem;
         display: block;
         text-align: center;
         border-bottom: 1px solid #ddd;
-    }
-    .menu-mobile {
-        display: block; /* Mostra o botão do menu hamburguer */
+        width: 100%;
     }
 
-    /* --- AJUSTES DOS DEPOIMENTOS --- */
+    .hamburger {
+        display: flex;
+    }
+
     .testimonial {
         padding: 20px;
         margin-top: 60px;
         text-align: center;
     }
+
     .testimonial .description,
     .testimonial .title,
     .testimonial .post {
         padding-left: 0;
     }
+
     .testimonial .pic {
         left: 50%;
         transform: translateX(-50%);
     }
+
     .testimonial:before,
     .testimonial:after {
         left: 10px;
     }
+
     .testimonial .title,
     .testimonial .post {
         display: block;
